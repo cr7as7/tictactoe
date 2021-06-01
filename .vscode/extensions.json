@@ -1,0 +1,27 @@
+{
+    "recommendations": [
+      "formulahendry.auto-rename-tag",
+      "CoenraadS.bracket-pair-colorizer",
+      "naumovs.color-highlight",
+      "aeschli.vscode-css-formatter",
+      "oouo-diogo-perdigao.docthis",
+      "dracula-theme.theme-dracula",
+      "EditorConfig.EditorConfig",
+      "dsznajder.es7-react-js-snippets",
+      "eamodio.gitlens",
+      "vincaslt.highlight-matching-tag",
+      "kisstkondoros.vscode-gutter-preview",
+      "wix.vscode-import-cost",
+      "byi8220.indented-block-highlighting",
+      "christian-kohler.npm-intellisense",
+      "christian-kohler.path-intellisense",
+      "dominicvonk.parameter-hints",
+      "OfHumanBondage.react-proptypes-intellisense",
+      "cssho.vscode-svgviewer",
+      "lihui.vs-color-picker",
+      "visualstudioexptteam.vscodeintellicode",
+      "johnpapa.winteriscoming",
+      "felipe-mendes.slack-theme",
+      "chakrounanas.turbo-console-log"
+    ]
+  }
