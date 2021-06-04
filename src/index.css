@@ -1,73 +1,202 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+
+:root {
+  --font: "Caveat", cursive;
+  --cyan: #00d09c;
+  --lg-white: #ffffffab;
 }
 
 body {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0px auto;
   color: white;
-  font-family: "Roboto", sans-serif;
-  display: flex;
-  /* align-items: center; */
-  justify-content: center;
-  min-height: 100vh;
-  padding: 2rem;
+  overflow-x: hidden;
 }
 
-h1 {
-  margin: 2rem;
-  margin-left: 11rem;
-  
+.ga543AppHead {
+  margin: 2rem 0rem 1rem 0rem;
+  text-align: center;
+  font-size: 3em;
 }
 
-.board {
-  border: 1rem solid #ddce46;
-  background: #2f71ff;
-  width: 500px;
-  height: 500px;
+.ga543ResultHead {
+  padding: 1rem 0rem 1rem 0rem;
+  font-size: 2em;
+}
+
+.ga543BoardAndHeader {
   display: grid;
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  gap: 1rem;
+  place-items: center;
 }
 
-.squares {
-  background: #272727;
-  border: none;
-  font-size: 5rem;
-  /* font-weight: 800; */
-  cursor: pointer;
-  outline: none;
+.bo846Board {
+  max-width: 310px;
+  max-height: 310px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
 }
 
-.X {
-  color: red;
-}
-.O {
-  color: green;
+.sq219Squares {
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+  border-radius: 2px;
+  border-color:#ffffff;
+  background: black;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 4em;
 }
 
-.info-wrapper {
-  display: flex;
+.ga543InfoWrapper {
+  display: block;
   justify-content: space-between;
 }
 
-h3 {
-  padding: 1rem;
-}
-
-li {
-  list-style: none;
-}
-
-.info-wrapper button {
-  background: #272727;
-  color: white;
-  border: none;
-  outline: none;
+.ga543ResetBtn {
+  width: 150px;
+  min-height: 50px;
+  border: 0px;
+  font-size: 2em;
+  color: black;
   cursor: pointer;
-  padding: 0.5rem;
-  margin: 0.5rem 1rem;
+  transition: 0.3s ease;
+  font-family: sans-serif;
+}
+
+.ga543ResetBtn:hover {
+  transform: scale(1.1);
+}
+
+.ga543InfoWrapper {
+  width: 90%;
+  padding: 10px;
+}
+
+.ga543InfoWrapper .ga543Dropdown {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ga543Dropdown .ga543HistoryHead {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.ga543DropdownContent {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 3em;
+  background-color:black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.ga543DropdownContent .ga543DropdownList {
+  border: 0px;
+  color:white;
+  width: 100%;
+  height: 30px;
+  background:black;
+  font-size: 1.1em;
+}
+
+.ga543GameStatus {
+  color:#00FF00;
+  font-size: 30px;
+}
+
+
+.lo123ChoiceFormContainer{
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items:center;
+}
+
+.lo123ChoiceFormContainer .lo123ChoiceForm{
+    width: 260px;
+    min-height: 260px;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 20px 25px 20px 20px ;
+}
+
+.lo123ChoiceFormLabel{
+  font-size: 1.5em;
+}
+
+.lo123ChoiceFormInput{
+  width: 100%;
+  border: 0px;
+  padding: 5px 0px 5px 5px;
+  margin: 10px 0px 10px 0px;
+  outline: none;
+}
+
+.lo123ChoiceBtns{
+  display: flex;
+  flex-direction: row;
+}
+
+.lo123PlayerPrompt{
+  width: 100%;
+  font-size: 1.5em;
+}
+
+.lo123PlayerBtn {
+  cursor: pointer;
+  border: 0px;
+  background: black;
+  border-radius: 0px;
+  width: 120px;
+  height: 50px;
+  font-size: 1.5em;
+  font-family: sans-serif;
+  color:var(--white);
+  display: grid;
+  place-items: center;
+  margin: 10px 10px 10px 0px;
+}
+
+.lo123PlayerBtn:hover,
+.lo123PlayerBtn:focus,
+.lo123PlayerBtn.active{
+  border: 1px solid white;
+}
+
+.lo123ChoiceSubmitBtn {
+  outline: none;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+  height: 40px;
+  font-size: 1.5em;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lo123ChoiceSubmitBtn:hover{
+  transform: scale(1.05);
+
+}
+
+@media only screen and (max-width: 768px) {
+  .sq219Squares {
+    height: 80px;
+    width: 80px;
+  }
 }

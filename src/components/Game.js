@@ -1,54 +1,129 @@
-import React, { useState } from "react";
-import { calculateWinner } from "../helper";
+import React, { useEffect, useState } from "react";
+import { calculateWinner } from "./helper";
 import Board from "./Board";
+import Button from "./button";
 
-const Game = () => {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [stepNumber, setStepNumber] = useState(0);
-  const [xIsNext, setXisNext] = useState(true);
-  const winner = calculateWinner(history[stepNumber]);
-  const xO = xIsNext ? "X" : "O";
+const Game = ({ location }) => {
 
-  const handleClick = (i) => {
-    const historyPoint = history.slice(0, stepNumber + 1);
-    const current = historyPoint[stepNumber];
-    const squares = [...current];
-    // return if won or occupied
-    if (winner || squares[i]) return;
-    // select square
-    squares[i] = xO;
-    setHistory([...historyPoint, squares]);
-    setStepNumber(historyPoint.length);
-    setXisNext(!xIsNext);
-  };
+  const squaresArray = Array(9).fill(null);
+  const [ player1, setPlayer1 ] = useState("")
+  const [ player2, setPlayer2 ] = useState("")
+  const [ value, setValue ] = useState("")
+
+  const [ historyOfMoves, setHistoryOfMoves ] = useState(squaresArray);
+  const [ stepNumber, setStepNumber ] = useState(-1);
+  const [ showHistory, setShowHistory ] = useState(false);
 
   const jumpTo = (step) => {
     setStepNumber(step);
-    setXisNext(step % 2 === 0);
+  };
+
+  useEffect(() => {
+    let { player1, player2, value } = location.state.props;
+    setValue(value)
+    setPlayer1(player1)
+    setPlayer2(player2)
+  }, [ location ])
+
+  let winner;
+
+  useEffect(() => {
+    if (winner || stepNumber === 8) {
+      setTimeout(() => {
+        jumpTo(-1)
+      }, 2000)
+    }
+  }, [ winner, stepNumber ])
+
+  const getStatusOfBoard = () => {
+    let boardStatus = squaresArray;
+
+    for (let step = 0; step <= stepNumber; step++) {
+      step % 2 !== 0
+        ? (boardStatus[ historyOfMoves[ step ] ] = value === "X" ? "O" : "X")
+        : (boardStatus[ historyOfMoves[ step ] ] = value);
+    }
+
+    return boardStatus;
+  };
+
+  winner = calculateWinner(getStatusOfBoard(), value, player1, player2);
+  const playerTurn = (stepNumber % 2 ? player1 : player2);
+
+  const handleClick = (clicked) => {
+    const historyPoint = historyOfMoves.slice(0, stepNumber + 1);
+    const moveInHistory = historyPoint.indexOf(clicked);
+
+    if (winner || moveInHistory !== -1) return;
+
+    let copyOfHistoryMoves = historyOfMoves;
+    copyOfHistoryMoves[ stepNumber + 1 ] = clicked;
+
+    for (let index = stepNumber + 2; index < 9; index++) {
+      copyOfHistoryMoves[ index ] = null;
+    }
+
+    setHistoryOfMoves(copyOfHistoryMoves);
+    setStepNumber(stepNumber + 1);
   };
 
   const renderMoves = () =>
-    history.map((_step, move) => {
-      const destination = move ? `Go to move #${move}` : "Go to Start";
-      return (
-        <li key={move}>
-          <button onClick={() => jumpTo(move)}>{destination}</button>
-        </li>
-      );
-    });
+    historyOfMoves
+      .filter((value) => value !== null)
+      .map((value, moveNum) => {
+        let val = "Move #" + (moveNum + 1);
+        return (
+          <Button
+            key={moveNum}
+            className="ga543DropdownList"
+            value={val}
+            onClick={() => jumpTo(moveNum)}
+          />
+        );
+      });
 
   return (
-    <>
-      <h1>Tic Tac Toe</h1>
-      <Board squares={history[stepNumber]} onClick={handleClick} />
-      <div className="info-wrapper">
-        <div>
-          <h3>History</h3>
-          {renderMoves()}
+
+    <div className="ga543BoardAndHistory">
+      <div className="ga543InfoWrapper">
+        <div className="ga543Dropdown">
+          <span
+            className="ga543HistoryHead"
+            onClick={() => setShowHistory((showHistory) => !showHistory)}
+          >
+            Moves
+            </span>
+          {
+            showHistory && (
+              <div className="ga543DropdownContent">{renderMoves()}</div>
+            )}
         </div>
-        <h3>{winner ? "Winner: " + winner : "Next Player: " + xO}</h3>
       </div>
-    </>
+      <div className="ga543BoardAndHeader">
+        <div className="ga543AppHead">Tic Tac Toe </div>
+        <Board
+          squares={getStatusOfBoard()}
+          onClick={handleClick}
+        />
+        <div className="ga543ResultHead">
+          {
+            winner ? (
+              <span className="ga543GameStatus">Winner: {winner}</span>
+            ) : stepNumber !== 8 ? (
+              "Next Player: " + playerTurn
+            ) : (
+              <span className="ga543GameStatus">Game Ends in a Draw</span>
+            )}
+        </div>
+        <div className="ga543ResetButtonDiv">
+          <Button
+            className="ga543ResetBtn"
+            value="Reset"
+            onClick={() => jumpTo(-1)}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 
