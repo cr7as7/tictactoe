@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <div className="lo123ChoiceFormContainer">
       <form onSubmit={(e) => SubmitForm(e)} className="lo123ChoiceForm">
-        <label className="lo123ChoiceFormLabel">Enter Player1:</label>
+        <label className="lo123ChoiceFormLabel">Player-1 Name :-</label>
         <input
           className="lo123ChoiceFormInput"
           name='player1'
@@ -42,7 +42,7 @@ const Login = () => {
           value={player1}
           onChange={e => setPlayer1(e.target.value)}
         />
-        <label className="lo123ChoiceFormLabel">Enter Player2:</label>
+        <label className="lo123ChoiceFormLabel">Player-2 Name :-</label>
         <input
           className="lo123ChoiceFormInput"
           name='player2'
@@ -67,7 +67,7 @@ const Login = () => {
             >O</div>
           </div>
         </div>
-        <Button type="submit" className="lo123ChoiceSubmitBtn" value="Submit" />
+        <Button type="submit" className="lo123ChoiceSubmitBtn" value="SUBMIT" />
       </form>
     </div>
   );
