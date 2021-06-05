@@ -26,7 +26,7 @@ h1 {
 }
 
 .board {
-  border: 1rem solid #ddce46;
+ 
   background: #cfc8b8;
   width: 500px;
   height: 500px;
@@ -34,16 +34,15 @@ h1 {
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   gap: 1rem;
   margin-top: 4em;
+  position: relative;
+  border: 15px solid #cfc8b8;
+  -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.75);
+  z-index: 10;
+  margin-left: 2em;
 }
 
-.squaress {
-  background: #272727;
-  border: none;
-  font-size: 5rem;
-  /* font-weight: 800; */
-  cursor: pointer;
-  outline: none;
-}
+
 
 .X {
   color: red;
@@ -117,6 +116,7 @@ li {
   font-family: sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: 1.5em;
 }
 
 .ChoiceSubmitBtn:hover{
@@ -142,51 +142,15 @@ ol, ul {
   margin-bottom: 10px;
 }
 
-.squares {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 4px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
-}
 
 .squares:focus {
   outline: none;
 }
 
-.kbd-navigation .squares:focus {
-  background: #ddd;
-}
 
-.game {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
 
-.game-info {
-  margin-left: 20px;
-}
 
-/*
- * --- spicing up components ---
- */
-/* squares: 
- - bigger size and font
- - nice background color & transition
- - pointer cursor
-*/
+
 .squares {
   font-size: 4rem;
   height: 140px;
@@ -207,113 +171,14 @@ ol, ul {
   background-color: #6b948c;
 }
 
-.board {
-  position: relative;
-  border: 15px solid #cfc8b8;
-  -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.75);
-  z-index: 10;
-  margin-left: 2em;
-}
 
-/* Game: 
- - center stage it
-*/
-.game {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  width: 100%;
-  height: 100vh;
-  border: 3px solid;
-}
 
-.game {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-flex: 0.7;
-      -ms-flex: 0.7;
-          flex: 0.7;
-  background-image: url("https://images.unsplash.com/photo-1457877916676-133b53113613?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9&s=c45d7f9c052bd80b55f5773e35c3f9ac");
-  background-size: cover;
-  background-position: 0 -50px;
-}
-.game-board:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 0;
-}
-
-.game-info {
-  margin: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-flex: 0.3;
-      -ms-flex: 0.3;
-          flex: 0.3;
-}
-
-.game-info__status,
-.game-info__moves {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  padding: 1rem;
-}
-
-.game-info__status {
-  font-size: 2rem;
-}
-.game-info__status {
-  color: #fff;
-  background-color: #524a4c;
-}
-
-.game-info__moves {
-  background-color: #2e292a;
-}
-
-.game-info__moves .list-moves li {
-  margin-bottom: 0.5rem;
-}
 
 h3 {
   text-align: center;
 }
 
-.bounce {
-  background: #bd081c;
-  text-align: center;
-  padding: 1rem;
-  padding: 1rem;
-  font-size: 2rem;
-  -webkit-transform: rotate(-25deg) translateX(-20px) translateY(100px);
-          transform: rotate(-25deg) translateX(-20px) translateY(100px);
-  -webkit-transition: 0.4s all;
-  transition: 0.4s all;
-}
+
 .history_button {
   
   display: grid;
