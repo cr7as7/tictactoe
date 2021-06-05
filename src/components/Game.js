@@ -20,7 +20,15 @@ const Game = ({ location }) => {
     setPlayer2(player2)
   }, [ location ])
 
-
+  useEffect(() => {
+    if (winner || stepNumber === 9) {
+    console.log(winner);
+      
+      setTimeout(() => {
+        jumpTo(0)
+      }, 3000)
+    }
+  }, [ winner, stepNumber ])
   const handleClick = (i) => {
     const historyPoint = history.slice(0, stepNumber + 1);
     const current = historyPoint[stepNumber];
@@ -50,19 +58,22 @@ const Game = ({ location }) => {
     });
 
   return (
-    <div style={{display: "flex"}}>
     <div>
       <div className="title">
-      <h2 >Tic Tac Toe</h2>
+      Tic Tac Toe
       </div>
+    <div style={{display: "flex",marginTop:"1.5rem"}}>
+      
       
       <Board squares={history[stepNumber]} onClick={handleClick} />
       
-      </div>
+     
       <div className="info-wrapper">
-        <div>
+        
           <div>
             <h2 className="status">Game Status</h2>
+            </div>
+            <div>
         <h3 className="win">{winner ? (
               <span className="">Winner: {winner}</span>
             ) : stepNumber !== 9 ? (
@@ -70,15 +81,19 @@ const Game = ({ location }) => {
             ) : (
               <span className="">Game Drawn</span>
             )}</h3>
+            
             </div>
+            <div>
           <h2 className="past">History</h2>
           <div className="history_button">
           {renderMoves()}
+          </div>
           </div>
         </div>
         
       </div>
     </div>
+    
   );
 };
 
