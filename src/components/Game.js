@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { calculateWinner } from "../helper";
 import Board from "./Board";
 
-const Game = () => {
+const Game = ({ location }) => {
+
+  const [ player1, setPlayer1 ] = useState("");
+  const [ player2, setPlayer2 ] = useState("");
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXisNext] = useState(true);
-  const winner = calculateWinner(history[stepNumber]);
+  const winner = calculateWinner(history[stepNumber],player1,player2);
   const xO = xIsNext ? "X" : "O";
+  const playerTurn=(stepNumber%2===0)? player1 :player2;
+
+  useEffect(() => {
+    let { player1, player2 } = location.state.props;
+    
+    setPlayer1(player1)
+    setPlayer2(player2)
+  }, [ location ])
+
 
   const handleClick = (i) => {
     const historyPoint = history.slice(0, stepNumber + 1);
@@ -46,7 +58,13 @@ const Game = () => {
           <h3>History</h3>
           {renderMoves()}
         </div>
-        <h3>{winner ? "Winner: " + winner : "Next Player: " + xO}</h3>
+        <h3>{winner ? (
+              <span className="">Winner: {winner}</span>
+            ) : stepNumber !== 9 ? (
+              "Next Player: " + playerTurn
+            ) : (
+              <span className="">Game Ends in a Draw</span>
+            )}</h3>
       </div>
     </>
   );
