@@ -32,26 +32,27 @@ const Login = () => {
   }
 
   return (
-    <div className="lo123ChoiceFormContainer">
-      <form onSubmit={(e) => SubmitForm(e)} className="lo123ChoiceForm">
-        <label className="lo123ChoiceFormLabel">Enter Player1:</label>
+    
+    <div className="ChoiceFormContainer">
+      <form onSubmit={(e) => SubmitForm(e)} className="ChoiceForm">
+        <label className="ChoiceFormLabel">Enter Player1:</label>
         <input
-          className="lo123ChoiceFormInput"
+          className="ChoiceFormInput"
           name='player1'
           type='text'
           value={player1}
           onChange={e => setPlayer1(e.target.value)}
         />
-        <label className="lo123ChoiceFormLabel">Enter Player2:</label>
+        <label className="ChoiceFormLabel">Enter Player2:</label>
         <input
-          className="lo123ChoiceFormInput"
+          className="ChoiceFormInput"
           name='player2'
           type='text'
           value={player2}
           onChange={e => setPlayer2(e.target.value)}
         />
 
-        <Button type="submit" className="lo123ChoiceSubmitBtn" value="Submit" />
+        <Button type="submit" className="ChoiceSubmitBtn" value="Submit" />
       </form>
     </div>
   );

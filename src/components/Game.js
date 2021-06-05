@@ -63,7 +63,7 @@ const Game = ({ location }) => {
             ) : stepNumber !== 9 ? (
               "Next Player: " + playerTurn
             ) : (
-              <span className="">Game Ends in a Draw</span>
+              <span className="">Game Drawn</span>
             )}</h3>
       </div>
     </>
