@@ -41,7 +41,7 @@ const Game = ({ location }) => {
 
   const renderMoves = () =>
     history.map((_step, move) => {
-      const destination = move ? `Go to move #${move}` : "Go to Start";
+      const destination = move ? `Go to move #${move}` : "start the game";
       return (
         <li key={move}>
           <button onClick={() => jumpTo(move)}>{destination}</button>
@@ -50,14 +50,14 @@ const Game = ({ location }) => {
     });
 
   return (
-    <>
-      <h1>Tic Tac Toe</h1>
+    <div style={{display: "flex"}}>
+    <div>
+      <h2>Tic Tac Toe</h2>
       <Board squares={history[stepNumber]} onClick={handleClick} />
+      
+      </div>
       <div className="info-wrapper">
         <div>
-          <h3>History</h3>
-          {renderMoves()}
-        </div>
         <h3>{winner ? (
               <span className="">Winner: {winner}</span>
             ) : stepNumber !== 9 ? (
@@ -65,8 +65,14 @@ const Game = ({ location }) => {
             ) : (
               <span className="">Game Drawn</span>
             )}</h3>
+          <h1>History</h1>
+          <div className="history_button">
+          {renderMoves()}
+          </div>
+        </div>
+        
       </div>
-    </>
+    </div>
   );
 };
 
