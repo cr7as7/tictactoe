@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { calculateWinner } from "../helper";
 import Board from "./Board";
+import Button from '@material-ui/core/Button';
 
 const Game = ({ location }) => {
 
@@ -26,6 +27,7 @@ const Game = ({ location }) => {
       
       setTimeout(() => {
         jumpTo(0)
+        setHistory([Array(9).fill(null)]);
       }, 3000)
     }
   }, [ winner, stepNumber ])
@@ -52,7 +54,13 @@ const Game = ({ location }) => {
       const destination = move ? `Move #${move}` : "START !";
       return (
         <li key={move}>
-          <button onClick={() => jumpTo(move)}>{destination}</button>
+          <Button 
+          variant="contained" 
+          color="primary" 
+          style={{
+            background: "lightcoral"
+          }}
+          onClick={() => jumpTo(move)}>{destination}</Button>
         </li>
       );
     });
@@ -64,22 +72,24 @@ const Game = ({ location }) => {
       </div>
     <div style={{display: "flex",marginTop:"1.5rem"}}>
       
-      
+      <div style={{width:"50%",display :"flex", justifyContent: "center" , alignItems: "center"}}>
       <Board squares={history[stepNumber]} onClick={handleClick} />
+
+      </div>
       
      
-      <div className="info-wrapper">
+      <div className="info-wrapper" style={{width:"50%", }}>
         
           <div>
             <h2 className="status">Game Status</h2>
             </div>
             <div>
         <h3 className="win">{winner ? (
-              <span className="">Winner: {winner}</span>
+              <span className="winnerName">Winner: {winner}</span>
             ) : stepNumber !== 9 ? (
               "Next Player: " + playerTurn
             ) : (
-              <span className="">Game Drawn</span>
+              <span className="drawName">Game Drawn</span>
             )}</h3>
             
             </div>

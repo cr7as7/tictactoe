@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import Buttons from "./Button";
 import { useHistory } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
@@ -52,7 +52,7 @@ const Login = () => {
           onChange={e => setPlayer2(e.target.value)}
         />
 
-        <Button type="submit" className="ChoiceSubmitBtn" value="Submit" />
+        <Buttons type="submit" className="ChoiceSubmitBtn" value="Submit" />
       </form>
     </div>
   );
