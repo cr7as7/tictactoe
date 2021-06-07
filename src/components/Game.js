@@ -78,7 +78,7 @@ const Game = ({ location }) => {
       </div>
       
      
-      <div className="info-wrapper" style={{width:"50%", }}>
+      <div className="info-wrapper" style={{width:"50%"}}>
         
           <div>
             <h2 className="status">Game Status</h2>
